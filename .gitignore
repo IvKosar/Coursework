@@ -1,0 +1,18 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+odt
+Буде вилучено .gitignore
+Буде вилучено .idea/Coursework.iml
+Буде вилучено .idea/inspectionProfiles/
+Буде вилучено .idea/misc.xml
+Буде вилучено .idea/modules.xml
+Буде вилучено .idea/workspace.xml
+Буде вилучено "\320\236\320\277\320\270\321\201 \320\264\320\276\321\201\320\273\321\226\320\264\320\266\320\265\320\275\320\275\321\217.odt"
+Буде вилучено "\320\237\321\200\320\270\320\272\320\273\320\260\320\264 \320\262\320\270\320\272\320\276\321\200\320\270\321\201\321\202\320\260\320\275\320\275\321\217.odt"
