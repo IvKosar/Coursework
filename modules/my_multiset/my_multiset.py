@@ -2,18 +2,25 @@ import os
 
 from arrays import DynamicArray
 from question import Question
-from gensim import corpora
+from gensim import corpora, models, similarities
 
 
 class MyMultiset():
     """
     This class is a simplified dict, where keys are question vectors, values - answers 
     """
+    PATH = os.getcwd() + "/tmp/"
+
     def __init__(self):
         self.keys = DynamicArray()
 
+    def __getitem__(self, item):
+        if not (0 <= item < len(self.keys)):
+            raise IndexError("Key index out of range")
 
-    def add_key(self, question,value, quest_vec=None):
+        return self.keys[item].get_value()
+
+    def add_key(self, question,value):
         """
         Adds key(class Question object to self.keys)
         
@@ -22,23 +29,20 @@ class MyMultiset():
         :param value: 
         :return: 
         """
-        key = Question(question,value, quest_vec)
+        key = self.create_Question_obj(question, value)
         self.keys.append(key)
 
-
-    def remove_key(self, key_vec):
+    @staticmethod
+    def create_Question_obj(question,value, quest_vec=None):
         """
-        Removes key from self.keys by given question vector
+        Create Question object with given parameters
         
-        :param key_vec: list
-        :return:
+        :param question: str
+        :param value: str
+        :param quest_vec: str 
+        :return: 
         """
-        for i in range(len(self.keys)):
-            if self.keys[i].que_vec == key_vec:
-                self.keys.remove(key)
-
-        raise KeyError()
-
+        return Question(question, value, quest_vec)
 
     def get_keys(self):
         """
@@ -92,13 +96,16 @@ class MyMultiset():
         # make mappings between words and their ids
         dictionary = corpora.Dictionary(texts)
         # store the dictionary
-        path = os.path.join(os.getcwd() + '/tmp/' + "gensim_dictionary.dict")
-        dictionary.save(path)
+        dictionary.save(MyMultiset.PATH + "gensim_dictionary.dict")
 
         # create corpus
         corpus = list(MyCorpus(dictionary, texts))
-        corpora.MmCorpus.serialize('/tmp/deerwester.mm', corpus)
+        corpora.MmCorpus.serialize(MyMultiset.PATH + 'corpus.mm', corpus)
         return
+
+    @staticmethod
+    def load_corpus():
+        return corpora.MmCorpus(MyMultiset.PATH + "corpus.mm")
 
     def make_model(self, corpus, model):
         """
@@ -108,17 +115,25 @@ class MyMultiset():
         :param model: tf-idf or lsi(lsa)
         :return: 
         """
-        dictionary = corpora.Dictionary.load(os.getcwd() + "/tmp/gensim_dictionary.dict")
+        dictionary = corpora.Dictionary.load(MyMultiset.PATH + "gensim_dictionary.dict")
         tfidf = models.TfidfModel(corpus)
 
         # apply transformation to whole corpus
         corpus_tfidf = tfidf[corpus]
 
-        # create lsi model
-        lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=2)
-        corpus_lsi = lsi[corpus_tfidf]
+        if model is "lsi":
+            # create lsi model
+            lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=2)
+            lsi.save(MyMultiset.PATH + "model.lsi")
+        else:
+            tfidf.save(MyMultiset.PATH + "model.tfidf")
+        return
 
-    def find_similarities(self, model, question):
+    @staticmethod
+    def load_model(model):
+        return models.LsiModel.load(MyMultiset.PATH + "model." + model)
+
+    def find_similarities(self, corpus, model, question):
         """
         Find percentage of similarity of each question with given one
         
@@ -126,8 +141,24 @@ class MyMultiset():
         :param question: str
         :return: 
         """
-        pass
+        # read corpora dictionary from file
+        dictionary = corpora.Dictionary.load(MyMultiset.PATH + "gensim_dictionary.dict")
 
+        # create question object
+        question_obj = Question(question)
+        question = question_obj.get_question()
+
+        # convert question to vector
+        vec_bow = dictionary.doc2bow(question.split())
+
+        # convert question to LSI space
+        vec_lsi = model[vec_bow]
+
+        # initialize matrix of similarities
+        index = similarities.MatrixSimilarity(model[corpus])
+
+        sims = index[vec_lsi]
+        return sims
 
     def sort(self, reverse = False):
         """
@@ -137,7 +168,6 @@ class MyMultiset():
         """
         pass
 
-
     def find_most_similar(self, similarities):
         """
         Find most similar question
@@ -145,4 +175,9 @@ class MyMultiset():
         :param similarities: 
         :return: 
         """
-        pass
+        sims = sorted(enumerate(similarities), reverse=True, key=lambda x: x[1])
+        highest_similarity = sims[0][1]
+        if highest_similarity > 0.6:
+            index = sims[0][0]
+            value = self[index]
+            return value

@@ -1,5 +1,7 @@
+import os
 from modules.my_multiset.my_multiset import MyMultiset
 from modules.message_processing.get_questions import get_questions
+
 
 def main(message, multiset):
     """
@@ -13,11 +15,15 @@ def main(message, multiset):
     :return: int/str
     """
     if is_question(message):
-        corpus = multiset.make_corpus()
+        corpus = MyMultiset.load_corpus()
+
         # in next versions best model detection will be added
         # now it's lsi model by default, which is the most universal
-        model = multiset.make_model(corpus, "lsi")
-        similarities = multiset.find_similarities(model, message)
+        multiset.make_model(corpus, "lsi")
+        model = MyMultiset.load_model("lsi")
+
+        similarities = multiset.find_similarities(corpus, model, message)
+        # answer to the question most similar to given
         most_similiar = multiset.find_most_similar(similarities)
         return most_similiar
     else:
@@ -37,4 +43,3 @@ def create_multiset():
 
 def is_question(message):
     return "?" in message
-

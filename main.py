@@ -26,11 +26,8 @@ def parse_slack_output(slack_rtm_output):
     output_list = slack_rtm_output
     if output_list and len(output_list) > 0:
         for output in output_list:
-            if output and 'text' in output and \
-                    (AT_TEACHER[0] in output['text'] or AT_TEACHER[1] in output['text']):
-                    text = output['text'].strip().replace(AT_TEACHER[0],'').\
-                        replace(AT_TEACHER[1],'')
-
+            if output and 'text' in output:
+                    text = output['text'].strip()
                     return text, output['channel']
     return None, None
 
