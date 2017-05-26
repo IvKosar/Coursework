@@ -35,7 +35,7 @@ def get_questions():
             message = eval(line)
             if "?" in message['text']:
                 new_message = remove_addresing(message["text"])
-                question = Question(new_message, values[i])
+                question = (new_message, values[i])
                 questions.append(question)
                 i += 1
     return questions

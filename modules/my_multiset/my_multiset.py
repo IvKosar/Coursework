@@ -92,11 +92,13 @@ class MyMultiset():
         # make mappings between words and their ids
         dictionary = corpora.Dictionary(texts)
         # store the dictionary
-        path = os.path.join(os.getcwd() + '/tmp/' + "corpus.dict")
+        path = os.path.join(os.getcwd() + '/tmp/' + "gensim_dictionary.dict")
         dictionary.save(path)
 
+        # create corpus
         corpus = list(MyCorpus(dictionary, texts))
-        return corpus
+        corpora.MmCorpus.serialize('/tmp/deerwester.mm', corpus)
+        return
 
     def make_model(self, corpus, model):
         """
@@ -106,8 +108,15 @@ class MyMultiset():
         :param model: tf-idf or lsi(lsa)
         :return: 
         """
-        pass
+        dictionary = corpora.Dictionary.load(os.getcwd() + "/tmp/gensim_dictionary.dict")
+        tfidf = models.TfidfModel(corpus)
 
+        # apply transformation to whole corpus
+        corpus_tfidf = tfidf[corpus]
+
+        # create lsi model
+        lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=2)
+        corpus_lsi = lsi[corpus_tfidf]
 
     def find_similarities(self, model, question):
         """

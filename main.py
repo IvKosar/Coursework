@@ -1,6 +1,7 @@
 import os
 import time
 from slackclient import SlackClient
+import modules.message_processing.main as message_process
 
 # bot's id
 BOT_ID = os.environ.get("BOT_ID")
@@ -49,6 +50,10 @@ if __name__ == "__main__":
     if slack_client.rtm_connect():
         print("Started!")
         while True:
+            # create Multiset of questions after initializing
+            message_process.create_multiset()
+
+            # read messages and handle them
             command,channel = parse_slack_output(slack_client.rtm_read())
             if command and channel:
                 handle_command(command,channel)
