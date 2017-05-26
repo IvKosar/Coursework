@@ -20,7 +20,7 @@ class MyMultiset():
 
         return self.keys[item].get_value()
 
-    def add_key(self, question,value):
+    def add_key(self, question,value=None):
         """
         Adds key(class Question object to self.keys)
         
@@ -168,7 +168,7 @@ class MyMultiset():
         """
         pass
 
-    def find_most_similar(self, similarities):
+    def find_most_similar(self, similarities, question):
         """
         Find most similar question
         
@@ -181,3 +181,6 @@ class MyMultiset():
             index = sims[0][0]
             value = self[index]
             return value
+        else:
+            self.add_key(question)
+            return 0

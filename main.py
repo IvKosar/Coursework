@@ -7,14 +7,16 @@ import modules.message_processing.main as message_process
 BOT_ID = os.environ.get("BOT_ID")
 
 # constants
-#these 2 are mine id
+#these 2 are my id
 TEACH1_ID = "U57B29A86" #U22JEU06N
 TEACH2_ID = "U57B29A86"
 AT_TEACHER = ("<@" + TEACH1_ID + ">","<@" + TEACH2_ID + ">")
 
+# initialize questions_base
+QUESTIONS_BASE = message_process.create_multiset()
+
 # initialize slack client
 slack_client = SlackClient(os.environ.get("SLACK_BOT_TOKEN"))
-
 
 def parse_slack_output(slack_rtm_output):
     """
@@ -27,18 +29,29 @@ def parse_slack_output(slack_rtm_output):
     if output_list and len(output_list) > 0:
         for output in output_list:
             if output and 'text' in output:
+                    user = output['user']
                     text = output['text'].strip()
-                    return text, output['channel']
-    return None, None
+                    return text, output['channel'], user
+    return None, None, None
 
 
-def handle_command(command, channel):
+def handle_message(message, channel, user):
     """
-        Receives commands directed at the bot and determines if they
-        are valid commands. If so, then acts on the commands. If not,
-        returns back what it needs for clarification.
+        Receives messages from channel and process it.
+        If it's a question find most similar to given.
+        If in the questions base there are no similar question
+        add to questions base
     """
-    response = "Sure...write some more code then I can do that!"
+    if user == BOT_ID:
+        # TO FINISH
+        return
+
+    answer = message_process.main(message, QUESTIONS_BASE)
+    if answer:
+        response = "<@" + user + ">" + " " + answer + '\n' + \
+                    "Якщо відповідь була корисною відреагуйте пальцем вверх =)"
+    else:
+        response = "<@" + TEACH1_ID + ">" + "<@" + TEACH2_ID + ">"
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
 
@@ -47,13 +60,10 @@ if __name__ == "__main__":
     if slack_client.rtm_connect():
         print("Started!")
         while True:
-            # create Multiset of questions after initializing
-            message_process.create_multiset()
-
             # read messages and handle them
-            command,channel = parse_slack_output(slack_client.rtm_read())
-            if command and channel:
-                handle_command(command,channel)
+            message,channel, user = parse_slack_output(slack_client.rtm_read())
+            if command and channel and user:
+                handle_message(message,channel, user)
             time.sleep(READ_WEB_SOCKET_DELAY)
     else:
         print("Connection failed")
