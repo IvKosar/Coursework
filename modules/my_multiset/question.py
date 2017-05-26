@@ -1,4 +1,4 @@
-from modules.message_processing import translate_whole
+from modules.message_processing.translate import translate_whole
 
 class Question():
     """

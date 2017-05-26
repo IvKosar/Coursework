@@ -7,7 +7,7 @@ BOT_ID = os.environ.get("BOT_ID")
 
 # constants
 #these 2 are mine id
-TEACH1_ID = "U57B29A86"
+TEACH1_ID = "U57B29A86" #U22JEU06N
 TEACH2_ID = "U57B29A86"
 AT_TEACHER = ("<@" + TEACH1_ID + ">","<@" + TEACH2_ID + ">")
 
