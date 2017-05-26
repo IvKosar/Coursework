@@ -177,7 +177,7 @@ class MyMultiset():
         """
         sims = sorted(enumerate(similarities), reverse=True, key=lambda x: x[1])
         highest_similarity = sims[0][1]
-        if highest_similarity > 0.6:
+        if highest_similarity > 0.9:
             index = sims[0][0]
             value = self[index]
             return value

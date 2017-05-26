@@ -95,6 +95,24 @@ def topics_and_transformations():
     lsi.save("/tmp/model.lsi")
     lsi = models.LsiModel.load("/tmp/model.lsi")
 
+def find_similarities():
+    dictionary = corpora.Dictionary.load('/tmp/deerwester.dict')
+    corpus = corpora.MmCorpus('/tmp/deerwester.mm')  # comes from the first tutorial, "From strings to vectors"
+    print(corpus)
+
+    lsi = models.LsiModel.load("/tmp/model.lsi")
+    doc = "one eight eleven seven nine four five thirteen ten nine nine fourteen eleven eleven eleven four seven six"
+    vec_bow = dictionary.doc2bow(doc.lower().split())
+    vec_lsi = lsi[vec_bow]
+    print(vec_lsi)
+
+    index = similarities.MatrixSimilarity(lsi[corpus])
+
+    sims = index[vec_lsi]
+    sims = sorted(enumerate(sims), reverse=True, key=lambda x: x[1])
+    print(sims)
+
 if __name__ == "__main__":
-    from_str_to_vec()
-    topics_and_transformations()
+    #from_str_to_vec()
+    #topics_and_transformations()
+    find_similarities()
