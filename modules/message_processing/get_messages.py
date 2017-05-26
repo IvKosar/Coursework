@@ -30,12 +30,12 @@ def get_channels_id(channel_name):
 
 def get_messages(channel_id):
     response = slackclient.api_call("groups.history",
-                                    channel=channel_id, count=26)
+                                    channel=channel_id)
     messages = response.get("messages")
     return messages
 
 def write_to_file(data):
-    with open("new_messages","a") as file:
+    with open("messages","a") as file:
         res_str = ''
         for element in data:
             res_str += str(element) + '\n'
@@ -45,5 +45,5 @@ def write_to_file(data):
 if __name__ == "__main__":
     from pprint import pprint
     #get_channels_id("programming_2016_2017")
-    pprint(get_messages(CHANNEL_ID))
+    #pprint(get_messages(CHANNEL_ID))
     #write_to_file(get_messages(CHANNEL_ID))
