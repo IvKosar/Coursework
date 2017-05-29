@@ -14,8 +14,10 @@ class MyCorpus():
 
     def __iter__(self):
         file = open(self.texts)
-        for line in file.read():
-            yield self.dictionary.doc2bow(line)
+        for line in file:
+            if line:
+                yield self.dictionary.doc2bow(line.split())
+        file.close()
 
     def __str__(self):
         res_str = ''

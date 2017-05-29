@@ -1,6 +1,6 @@
 import os
 from modules.my_multiset.my_multiset import MyMultiset
-from modules.message_processing.get_questions import get_questions
+from modules.message_processing.get_questions import get_questions, remove_addresing
 
 
 def main(message, multiset):
@@ -15,6 +15,8 @@ def main(message, multiset):
     :return: int/str
     """
     if is_question(message):
+        message = remove_addresing(message)
+        multiset.make_corpus()
         corpus = MyMultiset.load_corpus()
 
         # in next versions best model detection will be added
@@ -24,10 +26,10 @@ def main(message, multiset):
 
         similarities = multiset.find_similarities(corpus, model, message)
         # answer to the question most similar to given
-        most_similiar = multiset.find_most_similar(similarities)
+        most_similiar = multiset.find_most_similar(similarities, message)
         return most_similiar
     else:
-        return 0
+        return 1
 
 def create_multiset():
     """

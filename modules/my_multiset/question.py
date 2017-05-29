@@ -13,7 +13,7 @@ class Question():
         :param value: str, answer to the question
         """
         self._que_vec = que_vec
-        self._question_in_eng = translate_whole(question).lower()
+        self._question_in_eng = question.lower() #translate_whole(question).lower()
         self._value = value
 
     def set_value(self, value):

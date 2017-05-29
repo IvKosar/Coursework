@@ -1,3 +1,4 @@
+import os
 from modules.my_multiset.question import Question
 
 
@@ -30,7 +31,7 @@ def get_questions():
               якщо чогось  може бути декілька одиниць  погано ...''',
               ]
     i = 0
-    with open("messages", 'r') as file:
+    with open(os.getcwd() + "/modules/message_processing/messages", 'r') as file:
         for line in file:
             message = eval(line)
             if "?" in message['text']:
@@ -62,6 +63,7 @@ def remove_addresing(message_text):
     while "<" and ">" in message_text:
         addressator = get_addressator_to_remove(message_text)
         message_text = message_text.replace(addressator, "")
+        message_text = message_text.replace("?", "")
         message_text = message_text.replace("<>", "").strip()
     return message_text
 

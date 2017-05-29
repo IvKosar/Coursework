@@ -4,7 +4,9 @@ from slackclient import SlackClient
 BOT_NAME = 'spammer'
 
 #slack_client = SlackClient(os.environ.get("SLACK_BOT_TOKEN"))
-slack_client = SlackClient("xoxp-70140307553-78037962064-188319471891-172b09fd86060496fe4f98173058a3be")
+tokens = ["xoxb-176818620355-ehexY6lUksBblG3MX3xwizEZ",
+          "xoxp-70140307553-78037962064-188319471891-172b09fd86060496fe4f98173058a3be"]
+slack_client = SlackClient(tokens[0])
 
 
 def get_user_id(username):
@@ -26,5 +28,5 @@ def get_user_id(username):
         print("Cant find token")
 
 if __name__ == "__main__":
-    username = "dobosevych"
+    username = "spammer"
     get_user_id(username)

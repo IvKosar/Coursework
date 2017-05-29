@@ -1,7 +1,7 @@
 import os
 
-from arrays import DynamicArray
-from question import Question
+from modules.my_multiset.arrays import DynamicArray
+from modules.my_multiset.question import Question
 from gensim import corpora, models, similarities
 
 
@@ -9,12 +9,18 @@ class MyMultiset():
     """
     This class is a simplified dict, where keys are question vectors, values - answers 
     """
-    PATH = os.getcwd() + "/tmp/"
+    PATH = "/home/ivan/Документи/Slackbot/modules/my_multiset/tmp/"
 
     def __init__(self):
         self.keys = DynamicArray()
 
     def __getitem__(self, item):
+        """
+        Returns answer to question on given position in keys
+        
+        :param item: position in self.keys
+        :return: answer to the question
+        """
         if not (0 <= item < len(self.keys)):
             raise IndexError("Key index out of range")
 
@@ -53,21 +59,6 @@ class MyMultiset():
         for index in range(len(self.keys)):
             yield self.keys[index]
 
-
-    def get_key_value(self,que_vec):
-        """
-        Get answer to the given question
-        
-        :param que_vec: list
-        :return: attribute value of given Question object
-        """
-        for index in range(len(self.keys)):
-            if self.keys[index].get_que_vec() == que_vec:
-                return self.keys[index].get_value()
-
-        raise KeyError()
-
-
     def get_questions(self):
         """
         Get list of questions as list of strings
@@ -78,6 +69,27 @@ class MyMultiset():
         questions = list(map(lambda x: x.get_question(), keys))
         return questions
 
+    @staticmethod
+    def read_from_file(filename):
+        """
+        Read lines from file
+        
+        :param filename: str, name of file to read from
+        :return: 
+        """
+        with open(filename, "r") as file:
+            return file.readlines()
+
+    @staticmethod
+    def write_to_file(texts):
+        """
+        Write texts(e.g. processed questions) to file
+        :param texts: list(list)
+        :return: 
+        """
+        with open(MyMultiset.PATH + "texts", 'w') as file:
+            for text in texts:
+                file.write(" ".join(text) + "\n")
 
     def make_corpus(self):
         """
@@ -85,13 +97,14 @@ class MyMultiset():
         
         :return: corpus represented in list
         """
-        from my_corpus import MyCorpus
+        from modules.my_multiset.my_corpus import MyCorpus
 
         questions = self.get_questions()
         # remove common words and tokenize
-        stoplist = set('for a of the and to in'.split())
+        stoplist = set(MyMultiset.read_from_file("/home/ivan/Документи/Slackbot/docs/ukrainian-stopwords.txt"))
         texts = [[word for word in question.lower().split() if word not in stoplist]
                  for question in questions]
+        MyMultiset.write_to_file(texts)
 
         # make mappings between words and their ids
         dictionary = corpora.Dictionary(texts)
@@ -99,7 +112,7 @@ class MyMultiset():
         dictionary.save(MyMultiset.PATH + "gensim_dictionary.dict")
 
         # create corpus
-        corpus = list(MyCorpus(dictionary, texts))
+        corpus = list(MyCorpus(dictionary, MyMultiset.PATH + "texts"))
         corpora.MmCorpus.serialize(MyMultiset.PATH + 'corpus.mm', corpus)
         return
 

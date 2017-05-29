@@ -1,2 +1,7 @@
 .idea
 venv
+
+Буде вилучено modules/__pycache__/
+Буде вилучено modules/message_processing/__pycache__/
+Буде вилучено modules/my_multiset/__pycache__/
+Буде вилучено modules/my_multiset/tmp/

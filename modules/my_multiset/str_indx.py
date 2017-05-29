@@ -11,9 +11,9 @@ def from_str_to_vec():
         "This case is not important for the given problem, but turn 1pk"
     ]'''
     documents = [
-        "One two three four five six one",
-        "six seven eight nine ten twelve",
-        "eleven twelve thirteen fourteen six",
+        "один два пять шість",
+        "вав уау цс",
+        "цук 2укм цуц",
     ]
 
     # remove common words and tokenize
@@ -33,7 +33,7 @@ def from_str_to_vec():
              for text in texts]
     '''
     from pprint import pprint
-    #pprint(texts)
+    pprint(texts)
 
 
     # make mappings between words and their ids
@@ -101,7 +101,7 @@ def find_similarities():
     print(corpus)
 
     lsi = models.LsiModel.load("/tmp/model.lsi")
-    doc = "one eight eleven seven nine four five thirteen ten nine nine fourteen eleven eleven eleven four seven six"
+    doc = "один чотирнадцять тринадцять девять сім"
     vec_bow = dictionary.doc2bow(doc.lower().split())
     vec_lsi = lsi[vec_bow]
     print(vec_lsi)
@@ -113,6 +113,6 @@ def find_similarities():
     print(sims)
 
 if __name__ == "__main__":
-    #from_str_to_vec()
+    from_str_to_vec()
     #topics_and_transformations()
-    find_similarities()
+    #find_similarities()

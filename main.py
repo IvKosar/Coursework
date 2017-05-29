@@ -4,7 +4,7 @@ from slackclient import SlackClient
 import modules.message_processing.main as message_process
 
 # bot's id
-BOT_ID = os.environ.get("BOT_ID")
+BOT_ID = "U56Q2J8AF"
 
 # constants
 #these 2 are my id
@@ -16,7 +16,7 @@ AT_TEACHER = ("<@" + TEACH1_ID + ">","<@" + TEACH2_ID + ">")
 QUESTIONS_BASE = message_process.create_multiset()
 
 # initialize slack client
-slack_client = SlackClient(os.environ.get("SLACK_BOT_TOKEN"))
+slack_client = SlackClient("xoxb-176818620355-eHexY6lUksBblG3MX3xwizEZ".replace("H","h"))
 
 def parse_slack_output(slack_rtm_output):
     """
@@ -47,12 +47,16 @@ def handle_message(message, channel, user):
         return
 
     answer = message_process.main(message, QUESTIONS_BASE)
-    if answer:
+    if answer and answer is not 1:
         response = "<@" + user + ">" + " " + answer + '\n' + \
                     "Якщо відповідь була корисною відреагуйте пальцем вверх =)"
-    else:
+    elif answer is not 1:
         response = "<@" + TEACH1_ID + ">" + "<@" + TEACH2_ID + ">"
-    slack_client.api_call("chat.postMessage", channel=channel,
+    else:
+        return
+
+    if response:
+        slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
 
 if __name__ == "__main__":
@@ -62,7 +66,7 @@ if __name__ == "__main__":
         while True:
             # read messages and handle them
             message,channel, user = parse_slack_output(slack_client.rtm_read())
-            if command and channel and user:
+            if message and channel and user:
                 handle_message(message,channel, user)
             time.sleep(READ_WEB_SOCKET_DELAY)
     else:
