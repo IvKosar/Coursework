@@ -2,6 +2,7 @@ import os
 
 from modules.my_multiset.arrays import DynamicArray
 from modules.my_multiset.question import Question
+from modules.my_multiset.questions_queue import Questions_queue
 from gensim import corpora, models, similarities
 
 
@@ -13,6 +14,8 @@ class MyMultiset():
 
     def __init__(self):
         self.keys = DynamicArray()
+        self.non_answ_questions = Questions_queue()
+
 
     def __getitem__(self, item):
         """
@@ -146,7 +149,7 @@ class MyMultiset():
     def load_model(model):
         return models.LsiModel.load(MyMultiset.PATH + "model." + model)
 
-    def find_similarities(self, corpus, model, question):
+    def find_similarities(self, corpus, model, question, user):
         """
         Find percentage of similarity of each question with given one
         
@@ -158,8 +161,7 @@ class MyMultiset():
         dictionary = corpora.Dictionary.load(MyMultiset.PATH + "gensim_dictionary.dict")
 
         # create question object
-        question_obj = Question(question)
-        question = question_obj.get_question()
+        question_obj = Question(question, user=user)
 
         # convert question to vector
         vec_bow = dictionary.doc2bow(question.split())
@@ -171,7 +173,7 @@ class MyMultiset():
         index = similarities.MatrixSimilarity(model[corpus])
 
         sims = index[vec_lsi]
-        return sims
+        return sims, question_obj
 
     def sort(self, reverse = False):
         """
@@ -195,5 +197,5 @@ class MyMultiset():
             value = self[index]
             return value
         else:
-            self.add_key(question)
+            self.non_answ_questions.add_question(question)
             return 0

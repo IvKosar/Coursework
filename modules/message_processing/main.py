@@ -3,7 +3,7 @@ from modules.my_multiset.my_multiset import MyMultiset
 from modules.message_processing.get_questions import get_questions, remove_addresing
 
 
-def main(message, multiset):
+def main(message, multiset, user):
     """
     Make all operations with read message:
     -detect whether it's question
@@ -24,9 +24,9 @@ def main(message, multiset):
         multiset.make_model(corpus, "lsi")
         model = MyMultiset.load_model("lsi")
 
-        similarities = multiset.find_similarities(corpus, model, message)
+        similarities, question_object = multiset.find_similarities(corpus, model, message, user)
         # answer to the question most similar to given
-        most_similiar = multiset.find_most_similar(similarities, message)
+        most_similiar = multiset.find_most_similar(similarities, question_object)
         return most_similiar
     else:
         return 1
@@ -45,3 +45,6 @@ def create_multiset():
 
 def is_question(message):
     return "?" in message
+
+def is_answer(multiset, message):
+    pass

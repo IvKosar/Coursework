@@ -4,7 +4,7 @@ class Question():
     """
     Represents question
     """
-    def __init__(self, question, value=None, que_vec=None):
+    def __init__(self, question, value=None, user=None):
         """
         
         :param que_vec: list, characteristic of question
@@ -12,9 +12,9 @@ class Question():
         :param question: str
         :param value: str, answer to the question
         """
-        self._que_vec = que_vec
         self._question_in_eng = question.lower() #translate_whole(question).lower()
         self._value = value
+        self._user = user
 
     def set_value(self, value):
         self._value = value
@@ -22,13 +22,13 @@ class Question():
     def set_que_vec(self, que_vec):
         self._que_vec = que_vec
 
-    def get_que_vec(self):
+    def get_user(self):
         """
         Return question vector
         
         :return: list
         """
-        return self._que_vec
+        return self._user
 
     def get_question(self):
         """
