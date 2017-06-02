@@ -2,7 +2,7 @@ import os
 
 from modules.my_multiset.arrays import DynamicArray
 from modules.my_multiset.question import Question
-from modules.my_multiset.questions_queue import Questions_queue
+from modules.my_multiset.questions_dict import Questions_dict
 from gensim import corpora, models, similarities
 
 
@@ -14,8 +14,7 @@ class MyMultiset():
 
     def __init__(self):
         self.keys = DynamicArray()
-        self.non_answ_questions = Questions_queue()
-
+        self.non_answ_questions = Questions_dict()
 
     def __getitem__(self, item):
         """
@@ -38,11 +37,15 @@ class MyMultiset():
         :param value: 
         :return: 
         """
+        if isinstance(question, str):
+            self.keys.append(question)
+            return
+
         key = self.create_Question_obj(question, value)
         self.keys.append(key)
 
     @staticmethod
-    def create_Question_obj(question,value, quest_vec=None):
+    def create_Question_obj(question,value=None, user=None):
         """
         Create Question object with given parameters
         
@@ -51,7 +54,7 @@ class MyMultiset():
         :param quest_vec: str 
         :return: 
         """
-        return Question(question, value, quest_vec)
+        return Question(question, value, user)
 
     def get_keys(self):
         """
@@ -161,7 +164,7 @@ class MyMultiset():
         dictionary = corpora.Dictionary.load(MyMultiset.PATH + "gensim_dictionary.dict")
 
         # create question object
-        question_obj = Question(question, user=user)
+        question_obj = self.create_Question_obj(question, user=user)
 
         # convert question to vector
         vec_bow = dictionary.doc2bow(question.split())

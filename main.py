@@ -1,6 +1,6 @@
 """
 # This module is bot interface.
-# Connect to Slackclient via generated token
+# Connect to SlackClient via generated token
 # Check for events through Slack Real Time Messaging API
 # Detect messages(search for text in output)
 # Handle these messages by calling function from module main in message_processing package
@@ -11,6 +11,7 @@ import os
 import time
 import modules.message_processing.main as message_process
 from slackclient import SlackClient
+from modules.my_multiset.questions_dict import Questions_dict
 
 # bot's id
 BOT_ID = "U56Q2J8AF"
@@ -22,6 +23,7 @@ TEACH2_ID = "U57B29A86"
 
 # initialize questions_base
 QUESTIONS_BASE = message_process.create_multiset()
+NON_ANSWERED_QUESTIONS = Questions_dict()
 
 # initialize slack client
 slack_client = SlackClient("xoxb-176818620355-eHexY6lUksBblG3MX3xwizEZ".replace("H","h"))
@@ -60,26 +62,34 @@ def handle_message(message, channel, user):
         return
 
     # process message in supporting function
-    # if its response is str post answer to the channel
-    # if it responses with 0(means the message was a question
-    # but there is no similar in question base) call teachers to answer
-    # and save the answer
-    # if response is 1 means the message wasn't an answer
-    answer = message_process.main(message, QUESTIONS_BASE, user)
-    if answer and answer is not 1:
+    # if its response is str and is not a part of the message post answer to the channel
+    # if it responses with str and it's a part of message(addressee removed)
+    #  (means the message was a question but there is no similar in question base)
+    # call teachers to answer
+    # if response is 1 means the message was the answer to unanswered question,
+    # post thankful message to teacher
+    # if it responses with 0, means the message was neither a question nor an answer
+    answer = message_process.main(message, QUESTIONS_BASE, NON_ANSWERED_QUESTIONS, user)
+    if answer and answer is not 1 and answer not in message:
         response = "<@" + user + ">" + " " + answer + '\n' + \
                     "Якщо відповідь була корисною відреагуйте пальцем вверх =)"
-    elif answer is not 1:
-        response = "<@" + TEACH1_ID + ">" + "<@" + TEACH2_ID + ">" + " " + message
+    elif answer in message:
+        response = "<@" + TEACH1_ID + ">" + "<@" + TEACH2_ID + ">" + " " + message + \
+            "\n" + "Please answer to " + "<@" + user + ">" +\
+            "using this this tag"
+    elif answer is 1:
+        response = "Thank you for the answer!"
     else:
         return
 
+    # post response to the channel
     if response:
         slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
 
 if __name__ == "__main__":
     READ_WEB_SOCKET_DELAY = 1
+    # connect to Slack RTM API
     if slack_client.rtm_connect():
         print("Started!")
         while True:

@@ -1,21 +1,30 @@
+"""
+# Module for processing received message
+# Create multiset object
+"""
+
 import os
 from modules.my_multiset.my_multiset import MyMultiset
-from modules.message_processing.get_questions import get_questions, remove_addresing
+from modules.message_processing.get_questions import get_questions, remove_addresee, \
+    check_for_addressee, get_addressee
 
 
-def main(message, multiset, user):
+def main(message, multiset, non_answ_dict, user):
     """
     Make all operations with read message:
-    -detect whether it's question
-    -if so create corpus, make linguistic model, 
+    - detect whether it's question
+    - if so create corpus, make linguistic model,
      find most similar to given question
+    - detect whether the message is an answer to unanswered question
+    - if so add it to questions base
     
     :param message: str, latest message from Slack channel
     :param multiset: created multiset of questions
+    :param user: id of user who asked question
     :return: int/str
     """
     if is_question(message):
-        message = remove_addresing(message)
+        message = remove_addresee(message)
         multiset.make_corpus()
         corpus = MyMultiset.load_corpus()
 
@@ -27,9 +36,11 @@ def main(message, multiset, user):
         similarities, question_object = multiset.find_similarities(corpus, model, message, user)
         # answer to the question most similar to given
         most_similiar = multiset.find_most_similar(similarities, question_object)
-        return most_similiar
-    else:
+        return most_similiar if most_similiar else message
+    elif is_answer(multiset, non_answ_dict, message):
         return 1
+    else:
+        return 0
 
 def create_multiset():
     """
@@ -44,7 +55,34 @@ def create_multiset():
     return my_multiset
 
 def is_question(message):
+    """
+    Detect whether message is a question
+
+    :param message:
+    :return:
+    """
     return "?" in message
 
-def is_answer(multiset, message):
-    pass
+def is_answer(multiset,non_answ_dict, message):
+    """
+    Detect whether message is an answer to one given questions
+
+    :param multiset: questions base
+    :param message: str
+    :return:
+    """
+    if check_for_addressee(message) is True and non_answ_dict.is_non_answered() is True:
+        message_addressee = get_addressee(message)
+        users_wait_for_answ = non_answ_dict.get_users()
+        if message_addressee in users_wait_for_answ:
+            question = non_answ_dict.get_quest_to_answer(message_addressee)
+            non_answ_dict.remove_question(message_addressee)
+            message = remove_addresee(message)
+            question.set_value(message)
+            question.set_user_to_None()
+            multiset.add_key(question)
+            return 1
+        else:
+            return 0
+    else:
+        return 0

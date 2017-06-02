@@ -19,8 +19,8 @@ class Question():
     def set_value(self, value):
         self._value = value
 
-    def set_que_vec(self, que_vec):
-        self._que_vec = que_vec
+    def set_user_to_None(self, que_vec):
+        self._user = None
 
     def get_user(self):
         """
