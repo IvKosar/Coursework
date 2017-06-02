@@ -142,7 +142,7 @@ class MyMultiset():
 
         if model is "lsi":
             # create lsi model
-            lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=2)
+            lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=6)
             lsi.save(MyMultiset.PATH + "model.lsi")
         else:
             tfidf.save(MyMultiset.PATH + "model.tfidf")

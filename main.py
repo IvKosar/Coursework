@@ -73,7 +73,7 @@ def handle_message(message, channel, user):
     if answer and answer is not 1 and answer not in message:
         response = "<@" + user + ">" + " " + answer + '\n' + \
                     "Якщо відповідь була корисною відреагуйте пальцем вверх =)"
-    elif answer in message:
+    elif not isinstance(answer, int) and answer in message:
         response = "<@" + TEACH1_ID + ">" + "<@" + TEACH2_ID + ">" + " " + message + \
             "\n" + "Please answer to " + "<@" + user + ">" +\
             " using this this tag"
@@ -96,6 +96,7 @@ if __name__ == "__main__":
             # read messages and handle them
             message,channel, user = parse_slack_output(slack_client.rtm_read())
             if message and channel and user:
+                print(NON_ANSWERED_QUESTIONS.get_users())
                 handle_message(message,channel, user)
             time.sleep(READ_WEB_SOCKET_DELAY)
     else:

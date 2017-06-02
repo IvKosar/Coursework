@@ -5,7 +5,7 @@
 
 import os
 from modules.my_multiset.my_multiset import MyMultiset
-from modules.message_processing.get_questions import get_questions, remove_addresee, \
+from modules.message_processing.get_questions import get_questions, remove_addressee, \
     check_for_addressee, get_addressee
 
 
@@ -24,8 +24,7 @@ def main(message, multiset, non_answ_dict, user):
     :return: int/str
     """
     if is_question(message):
-        print(multiset.get_questions())
-        message = remove_addresee(message)
+        message = remove_addressee(message)
         multiset.make_corpus()
         corpus = MyMultiset.load_corpus()
 
@@ -38,7 +37,11 @@ def main(message, multiset, non_answ_dict, user):
         print(similarities)
         # answer to the question most similar to given
         most_similiar = multiset.find_most_similar(similarities, question_object)
-        return most_similiar if most_similiar else message
+        if most_similiar:
+            return most_similiar
+        else:
+            non_answ_dict.add_question(question_object)
+            return message
     elif is_answer(multiset, non_answ_dict, message):
         return 1
     else:
@@ -79,7 +82,7 @@ def is_answer(multiset,non_answ_dict, message):
         if message_addressee in users_wait_for_answ:
             question = non_answ_dict.get_quest_to_answer(message_addressee)
             non_answ_dict.remove_question(message_addressee)
-            message = remove_addresee(message)
+            message = remove_addressee(message)
             question.set_value(message)
             question.set_user_to_None()
             multiset.add_key(question)

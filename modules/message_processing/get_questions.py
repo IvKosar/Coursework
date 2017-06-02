@@ -10,14 +10,14 @@ def get_questions():
     """
     questions = []
     with open("/home/ivan/Документи/Slackbot/docs/answers_base", "r") as file:
-        values = file.readlines()
+        values = list(map(lambda x: x.strip(), file.readlines()))
 
     i = 0
-    with open(os.getcwd() + "/modules/message_processing/messages", 'r') as file:
+    with open("/home/ivan/Документи/Slackbot" + "/modules/message_processing/messages", 'r') as file:
         for line in file:
             message = eval(line)
             if "?" in message['text']:
-                new_message = remove_addresee(message["text"])
+                new_message = remove_addressee(message["text"])
                 question = (new_message, values[i])
                 questions.append(question)
                 i += 1
@@ -56,13 +56,15 @@ def get_addressee(message_text):
     return get_addressee_to_remove(message_text)[1:]
 
 
-def remove_addresee(message_text):
+def remove_addressee(message_text):
     import string
     while "<" in message_text and ">" in message_text:
         addressator = get_addressee_to_remove(message_text)
         message_text = message_text.replace(addressator, "")
         message_text = message_text.replace("<>", "").strip()
+
     # remove punctuation marks
+    punctuation = string.punctuation.replace("<", "").replace(">", "")
     for c in string.punctuation:
         message_text = message_text.replace(c, "")
 
@@ -70,5 +72,6 @@ def remove_addresee(message_text):
 
 
 if __name__ == "__main__":
+    from pprint import pprint
     #print(remove_addresing("<@dfdfd>  dfd"))
-    print(get_questions())
+    pprint(get_questions())
