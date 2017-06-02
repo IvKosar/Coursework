@@ -4,7 +4,7 @@ from slackclient import SlackClient
 BOT_NAME = 'spammer'
 
 #slack_client = SlackClient(os.environ.get("SLACK_BOT_TOKEN"))
-tokens = ["xoxb-176818620355-ehexY6lUksBblG3MX3xwizEZ",
+tokens = ["xoxb-176818620355-m7nN8xxFha856gQU1Lk5PzduZ".replace("Q","q"),
           "xoxp-70140307553-78037962064-188319471891-172b09fd86060496fe4f98173058a3be"]
 slack_client = SlackClient(tokens[0])
 

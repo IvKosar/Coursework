@@ -26,7 +26,7 @@ QUESTIONS_BASE = message_process.create_multiset()
 NON_ANSWERED_QUESTIONS = Questions_dict()
 
 # initialize slack client
-slack_client = SlackClient("xoxb-176818620355-eHexY6lUksBblG3MX3xwizEZ".replace("H","h"))
+slack_client = SlackClient("xoxb-176818620355-m7nN8xxFha856gQU1Lk5PzduZ".replace("Q","q"))
 
 def parse_slack_output(slack_rtm_output):
     """
