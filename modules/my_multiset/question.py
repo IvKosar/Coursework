@@ -12,14 +12,14 @@ class Question():
         :param question: str
         :param value: str, answer to the question
         """
-        self._question_in_eng = question.lower() #translate_whole(question).lower()
+        self._question = question.lower() #translate_whole(question).lower()
         self._value = value
         self._user = user
 
     def set_value(self, value):
         self._value = value
 
-    def set_user_to_None(self, que_vec):
+    def set_user_to_None(self):
         self._user = None
 
     def get_user(self):
@@ -36,7 +36,7 @@ class Question():
         
         :return: str
         """
-        return self._question_in_eng
+        return self._question
 
 
     def get_value(self):

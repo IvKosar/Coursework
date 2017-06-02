@@ -96,7 +96,11 @@ if __name__ == "__main__":
             # read messages and handle them
             message,channel, user = parse_slack_output(slack_client.rtm_read())
             if message and channel and user:
-                print(NON_ANSWERED_QUESTIONS.get_users())
+
+                question = NON_ANSWERED_QUESTIONS.get_quest_to_answer('U57B29A86')
+                if question: print(question.get_question())
+                print(len(list(QUESTIONS_BASE.get_keys())))
+
                 handle_message(message,channel, user)
             time.sleep(READ_WEB_SOCKET_DELAY)
     else:

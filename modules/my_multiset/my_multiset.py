@@ -28,6 +28,9 @@ class MyMultiset():
 
         return self.keys[item].get_value()
 
+    def __len__(self):
+        return self.keys
+
     def add_key(self, question,value=None):
         """
         Adds key(class Question object to self.keys)
@@ -195,7 +198,7 @@ class MyMultiset():
         """
         sims = sorted(enumerate(similarities), reverse=True, key=lambda x: x[1])
         highest_similarity = sims[0][1]
-        if highest_similarity > 0.9:
+        if highest_similarity > 0.99:
             index = sims[0][0]
             value = self[index]
             return value

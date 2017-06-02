@@ -26,7 +26,10 @@ class Questions_dict(object):
         :return: None
         """
         user = question.get_user()
-        self._dict[user] = question
+        if user in self.get_users():
+            self._dict[user].append(question)
+        else:
+            self._dict[user] = [question]
 
     def get_quest_to_answer(self, user):
         """
@@ -35,7 +38,10 @@ class Questions_dict(object):
         :param user: str, user id
         :return: Question object
         """
-        return self._dict[user]
+        try:
+            return self._dict[user][0]
+        except KeyError:
+            return
 
     def remove_question(self, user):
         """
@@ -43,7 +49,9 @@ class Questions_dict(object):
 
         :return: None
         """
-        del(self._dict[user])
+        self._dict[user].pop(0)
+        if self._dict[user] == list():
+            del(self._dict[user])
 
     def get_users(self):
         """
