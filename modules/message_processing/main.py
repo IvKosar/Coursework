@@ -24,6 +24,7 @@ def main(message, multiset, non_answ_dict, user):
     :return: int/str
     """
     if is_question(message):
+        print(multiset.get_questions())
         message = remove_addresee(message)
         multiset.make_corpus()
         corpus = MyMultiset.load_corpus()
@@ -34,6 +35,7 @@ def main(message, multiset, non_answ_dict, user):
         model = MyMultiset.load_model("lsi")
 
         similarities, question_object = multiset.find_similarities(corpus, model, message, user)
+        print(similarities)
         # answer to the question most similar to given
         most_similiar = multiset.find_most_similar(similarities, question_object)
         return most_similiar if most_similiar else message

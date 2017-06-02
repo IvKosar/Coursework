@@ -37,7 +37,7 @@ class MyMultiset():
         :param value: 
         :return: 
         """
-        if isinstance(question, str):
+        if not isinstance(question, str):
             self.keys.append(question)
             return
 

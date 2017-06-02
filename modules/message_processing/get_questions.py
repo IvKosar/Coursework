@@ -57,12 +57,16 @@ def get_addressee(message_text):
 
 
 def remove_addresee(message_text):
+    import string
     while "<" in message_text and ">" in message_text:
         addressator = get_addressee_to_remove(message_text)
         message_text = message_text.replace(addressator, "")
-        message_text = message_text.replace("?", "")
         message_text = message_text.replace("<>", "").strip()
-    return message_text
+    # remove punctuation marks
+    for c in string.punctuation:
+        message_text = message_text.replace(c, "")
+
+    return message_text.strip()
 
 
 if __name__ == "__main__":

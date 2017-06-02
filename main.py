@@ -26,7 +26,7 @@ QUESTIONS_BASE = message_process.create_multiset()
 NON_ANSWERED_QUESTIONS = Questions_dict()
 
 # initialize slack client
-slack_client = SlackClient("xoxb-176818620355-m7nN8xxFha856gQU1Lk5PzduZ".replace("Q","q"))
+slack_client = SlackClient("xoxb-176818620355-m7nN8xxFha856gQU1Lk5Pzdu".replace("Q","q"))
 
 def parse_slack_output(slack_rtm_output):
     """
@@ -76,7 +76,7 @@ def handle_message(message, channel, user):
     elif answer in message:
         response = "<@" + TEACH1_ID + ">" + "<@" + TEACH2_ID + ">" + " " + message + \
             "\n" + "Please answer to " + "<@" + user + ">" +\
-            "using this this tag"
+            " using this this tag"
     elif answer is 1:
         response = "Thank you for the answer!"
     else:
