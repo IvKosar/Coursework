@@ -1,7 +1,7 @@
 import os
 from slackclient import SlackClient
 
-BOT_NAME = 'spammer'
+BOT_NAME = 'answerme'
 
 #slack_client = SlackClient(os.environ.get("SLACK_BOT_TOKEN"))
 tokens = ["xoxb-176818620355-m7nN8xxFha856gQU1Lk5PzduZ".replace("Q","q"),
@@ -28,5 +28,5 @@ def get_user_id(username):
         print("Cant find token")
 
 if __name__ == "__main__":
-    username = "spammer"
+    username = BOT_NAME
     get_user_id(username)
