@@ -1,4 +1,6 @@
-from modules.message_processing.translate import translate_whole
+"""
+
+"""
 
 class Question():
     """
