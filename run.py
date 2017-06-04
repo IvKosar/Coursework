@@ -7,11 +7,12 @@
 # Give response to the message if it was a question
 """
 
-import os
 import time
-import modules.message_processing.main as message_process
+
 from slackclient import SlackClient
-from modules.my_multiset.questions_dict import Questions_dict
+
+import modules.message_processing.main as message_process
+from modules.questions_dict.questions_dict import Questions_dict
 
 # bot's id
 BOT_ID = "U56Q2J8AF"
@@ -19,7 +20,7 @@ BOT_ID = "U56Q2J8AF"
 # Slack ids of teachers
 # currently these 2 are my id as I don't have enough permissions
 TEACH1_ID = "U57B29A86" #U22JEU06N
-TEACH2_ID = "U57B29A86"
+TEACH2_ID = "U57B29A86" #U2B5102ES
 
 # initialize questions_base
 QUESTIONS_BASE = message_process.create_multiset()
@@ -97,9 +98,9 @@ if __name__ == "__main__":
             message,channel, user = parse_slack_output(slack_client.rtm_read())
             if message and channel and user:
 
-                question = NON_ANSWERED_QUESTIONS.get_quest_to_answer('U57B29A86')
-                if question: print(question.get_question())
-                print(len(list(QUESTIONS_BASE.get_keys())))
+                #question = NON_ANSWERED_QUESTIONS.get_quest_to_answer('U57B29A86')
+                #if question: print(question.get_question())
+                #print(len(list(QUESTIONS_BASE.get_keys())))
 
                 handle_message(message,channel, user)
             time.sleep(READ_WEB_SOCKET_DELAY)

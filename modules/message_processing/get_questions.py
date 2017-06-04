@@ -13,7 +13,7 @@ def get_questions():
         values = list(map(lambda x: x.strip(), file.readlines()))
 
     i = 0
-    with open("/home/ivan/Документи/Slackbot" + "/modules/message_processing/messages", 'r') as file:
+    with open("/home/ivan/Документи/Slackbot" + "/docs/messages", 'r') as file:
         for line in file:
             message = eval(line)
             if "?" in message['text']:

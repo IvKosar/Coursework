@@ -9,18 +9,16 @@ TOKEN = 'xoxp-70140307553-78037962064-188319471891-172b09fd86060496fe4f98173058a
 # initialize slackclient
 slackclient = SlackClient(TOKEN)
 
-# programming_2016_2017 channel id
-CHANNEL_ID = "G4K508JUA"
-# Andriy Romanyuk's ID
-TEACHER0_ID = "U2B5102ES"
-# Oles's ID
-TEACHER1_ID = "U22JEU06N"
-
-
 def test():
     return slackclient.api_call("api.test").get("ok")
 
 def get_channels_id(channel_name):
+    """
+    Get Slack channel id by its name
+
+    :param channel_name: str
+    :return: str
+    """
     response = slackclient.api_call("groups.list")
     groups = response.get("groups")
     for group in groups:

@@ -19,7 +19,8 @@ def main(message, multiset, non_answ_dict, user):
     - if so add it to questions base
     
     :param message: str, latest message from Slack channel
-    :param multiset: created multiset of questions
+    :param multiset: created multiset of questions, MyMultiset object
+    :param non_answ_dict: created Questions_dict object for storing questions without answers
     :param user: id of user who asked question
     :return: int/str
     """

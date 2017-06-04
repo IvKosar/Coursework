@@ -18,10 +18,3 @@ class MyCorpus():
             if line:
                 yield self.dictionary.doc2bow(line.split())
         file.close()
-
-    def __str__(self):
-        res_str = ''
-        for vector in self:
-            res_str += str(vector) + '\n'
-
-        return res_str

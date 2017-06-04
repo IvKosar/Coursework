@@ -1,20 +1,18 @@
-import os
+from gensim import corpora, models, similarities
 
 from modules.my_multiset.arrays import DynamicArray
 from modules.my_multiset.question import Question
-from modules.my_multiset.questions_dict import Questions_dict
-from gensim import corpora, models, similarities
 
 
 class MyMultiset():
     """
     This class is a simplified dict, where keys are question vectors, values - answers 
     """
-    PATH = "/home/ivan/Документи/Slackbot/modules/my_multiset/tmp/"
+    import os
+    PATH = os.getcwd() + "/modules/my_multiset/tmp/"
 
     def __init__(self):
         self.keys = DynamicArray()
-        self.non_answ_questions = Questions_dict()
 
     def __getitem__(self, item):
         """
@@ -29,7 +27,7 @@ class MyMultiset():
         return self.keys[item].get_value()
 
     def __len__(self):
-        return self.keys
+        return self.keys.__len__()
 
     def add_key(self, question,value=None):
         """
@@ -59,7 +57,17 @@ class MyMultiset():
         """
         return Question(question, value, user)
 
-    def get_keys(self):
+    def get_questions(self):
+        """
+        Get list of questions as list of strings
+
+        :return:
+        """
+        keys = list(self.get_values())
+        questions = list(map(lambda x: x.get_question(), keys))
+        return questions
+
+    def get_values(self):
         """
         Return generator of keys
                 
@@ -67,16 +75,6 @@ class MyMultiset():
         """
         for index in range(len(self.keys)):
             yield self.keys[index]
-
-    def get_questions(self):
-        """
-        Get list of questions as list of strings
-
-        :return: 
-        """
-        keys = list(self.get_keys())
-        questions = list(map(lambda x: x.get_question(), keys))
-        return questions
 
     @staticmethod
     def read_from_file(filename):
@@ -203,5 +201,4 @@ class MyMultiset():
             value = self[index]
             return value
         else:
-            self.non_answ_questions.add_question(question)
             return 0
