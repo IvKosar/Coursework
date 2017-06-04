@@ -15,7 +15,7 @@ slack_client = SlackClient(tokens[0])
 
 def get_user_id(username):
     """
-    Get Slack user(bot) id by his username
+    Gets Slack user(bot) id by his username
     
     :param username: Slack username
     :return: 
