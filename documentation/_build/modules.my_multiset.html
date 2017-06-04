@@ -1,0 +1,504 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>modules.my_multiset package &#8212; Answerme Bot 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="modules.questions_dict package" href="modules.questions_dict.html" />
+    <link rel="prev" title="modules.message_processing package" href="modules.message_processing.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="modules-my-multiset-package">
+<h1>modules.my_multiset package<a class="headerlink" href="#modules-my-multiset-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-modules.my_multiset.arrays">
+<span id="modules-my-multiset-arrays-module"></span><h2>modules.my_multiset.arrays module<a class="headerlink" href="#module-modules.my_multiset.arrays" title="Permalink to this headline">¶</a></h2>
+<p>Contain classes for representing data structures Array and Dynamic array</p>
+<dl class="class">
+<dt id="modules.my_multiset.arrays.Array">
+<em class="property">class </em><code class="descclassname">modules.my_multiset.arrays.</code><code class="descname">Array</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.arrays.Array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Implements the Array ADT using array capabilities of the ctypes module.</p>
+<dl class="method">
+<dt id="modules.my_multiset.arrays.Array.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.arrays.Array.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the array by setting each element to the given value.
+:param value: the value of element.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="modules.my_multiset.arrays.DynamicArray">
+<em class="property">class </em><code class="descclassname">modules.my_multiset.arrays.</code><code class="descname">DynamicArray</code><a class="headerlink" href="#modules.my_multiset.arrays.DynamicArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A dynamic array class a simplified Python list.</p>
+<dl class="method">
+<dt id="modules.my_multiset.arrays.DynamicArray.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.arrays.DynamicArray.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Puts the value in the end of the array.
+:param value: the value of element.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.arrays.DynamicArray.insert">
+<code class="descname">insert</code><span class="sig-paren">(</span><em>index</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.arrays.DynamicArray.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inserts value at index, shifting subsequent values rightward.        
+:param index: the index.
+:param value: the value that need to be inserted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.arrays.DynamicArray.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.arrays.DynamicArray.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes first occurrence of value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> – the value that need to be removed.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-modules.my_multiset.my_corpus">
+<span id="modules-my-multiset-my-corpus-module"></span><h2>modules.my_multiset.my_corpus module<a class="headerlink" href="#module-modules.my_multiset.my_corpus" title="Permalink to this headline">¶</a></h2>
+<p># Contain class for converting strings to vectors
+# Each string is converted into vector, which represent frequency of
+# each word in string</p>
+<dl class="class">
+<dt id="modules.my_multiset.my_corpus.MyCorpus">
+<em class="property">class </em><code class="descclassname">modules.my_multiset.my_corpus.</code><code class="descname">MyCorpus</code><span class="sig-paren">(</span><em>dictionary</em>, <em>texts</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_corpus.MyCorpus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Memory friendly representation of corpus as simple generator</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-modules.my_multiset.my_multiset">
+<span id="modules-my-multiset-my-multiset-module"></span><h2>modules.my_multiset.my_multiset module<a class="headerlink" href="#module-modules.my_multiset.my_multiset" title="Permalink to this headline">¶</a></h2>
+<p># Contain MyMultiset ADT</p>
+<dl class="class">
+<dt id="modules.my_multiset.my_multiset.MyMultiset">
+<em class="property">class </em><code class="descclassname">modules.my_multiset.my_multiset.</code><code class="descname">MyMultiset</code><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>This class is a simplified dict, where keys are question vectors, values - answers</p>
+<dl class="attribute">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.PATH">
+<code class="descname">PATH</code><em class="property"> = ‘/home/ivan/Документи/Slackbot/documentation/modules/my_multiset/tmp/’</em><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.PATH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.add_key">
+<code class="descname">add_key</code><span class="sig-paren">(</span><em>question</em>, <em>value=None</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.add_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add key(class Question object to self.keys)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>question</strong> – question to add</li>
+<li><strong>value</strong> – answer to the question</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.create_Question_obj">
+<em class="property">static </em><code class="descname">create_Question_obj</code><span class="sig-paren">(</span><em>question</em>, <em>value=None</em>, <em>user=None</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.create_Question_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Question object with given parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>question</strong> – str</li>
+<li><strong>value</strong> – str</li>
+<li><strong>quest_vec</strong> – str</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">class Question object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.find_most_similar">
+<code class="descname">find_most_similar</code><span class="sig-paren">(</span><em>similarities</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.find_most_similar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find most similar question</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>similarities</strong> – list(list) created in find_similarities method</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">str/int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.find_similarities">
+<code class="descname">find_similarities</code><span class="sig-paren">(</span><em>corpus</em>, <em>model</em>, <em>question</em>, <em>user</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.find_similarities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find percentage of similarity of each question in model with given one</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>corpus</strong> – list(list)</li>
+<li><strong>model</strong> – list(list)</li>
+<li><strong>question</strong> – str</li>
+<li><strong>user</strong> – Slack user id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list(list), inner list is a sequence number of question with percentage similarity to given one</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.get_questions">
+<code class="descname">get_questions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.get_questions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of questions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list(str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.get_values">
+<code class="descname">get_values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.get_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return generator of answers to the questions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">generator object of values of keys</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.load_corpus">
+<em class="property">static </em><code class="descname">load_corpus</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.load_corpus" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.load_model">
+<em class="property">static </em><code class="descname">load_model</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.load_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.make_corpus">
+<code class="descname">make_corpus</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.make_corpus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make corpus of questions
+Save corpus to file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.make_model">
+<code class="descname">make_model</code><span class="sig-paren">(</span><em>corpus</em>, <em>model</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.make_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make vectors of given corpus represented in model to compare them
+Save the model to file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>corpus</strong> – corpus of questions, list(list)</li>
+<li><strong>model</strong> – tf-idf or lsi</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.os">
+<code class="descname">os</code><em class="property"> = &lt;module ‘os’ from ‘/usr/lib/python3.5/os.py’&gt;</em><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.os" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.read_from_file">
+<em class="property">static </em><code class="descname">read_from_file</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.read_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read lines from file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> – str, name of file to read from</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="modules.my_multiset.my_multiset.MyMultiset.write_to_file">
+<em class="property">static </em><code class="descname">write_to_file</code><span class="sig-paren">(</span><em>texts</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.my_multiset.MyMultiset.write_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write texts(e.g. processed questions) to file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>texts</strong> – list(list)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-modules.my_multiset.question">
+<span id="modules-my-multiset-question-module"></span><h2>modules.my_multiset.question module<a class="headerlink" href="#module-modules.my_multiset.question" title="Permalink to this headline">¶</a></h2>
+<p># Contain class Question for storing question and its answer</p>
+<dl class="class">
+<dt id="modules.my_multiset.question.Question">
+<em class="property">class </em><code class="descclassname">modules.my_multiset.question.</code><code class="descname">Question</code><span class="sig-paren">(</span><em>question</em>, <em>value=None</em>, <em>user=None</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.question.Question" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Represents question
+Attributes: question(required)</p>
+<blockquote>
+<div>value(not required)
+user(not required)</div></blockquote>
+<dl class="method">
+<dt id="modules.my_multiset.question.Question.get_question">
+<code class="descname">get_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.question.Question.get_question" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return question</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.question.Question.get_user">
+<code class="descname">get_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.question.Question.get_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Slack user id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.question.Question.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.question.Question.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return answer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.question.Question.set_user_to_None">
+<code class="descname">set_user_to_None</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.question.Question.set_user_to_None" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modules.my_multiset.question.Question.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.question.Question.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set self.value to given value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> – str, answer to the question</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-modules.my_multiset.str_indx">
+<span id="modules-my-multiset-str-indx-module"></span><h2>modules.my_multiset.str_indx module<a class="headerlink" href="#module-modules.my_multiset.str_indx" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="modules.my_multiset.str_indx.find_similarities">
+<code class="descclassname">modules.my_multiset.str_indx.</code><code class="descname">find_similarities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.str_indx.find_similarities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="modules.my_multiset.str_indx.from_str_to_vec">
+<code class="descclassname">modules.my_multiset.str_indx.</code><code class="descname">from_str_to_vec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.str_indx.from_str_to_vec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="modules.my_multiset.str_indx.topics_and_transformations">
+<code class="descclassname">modules.my_multiset.str_indx.</code><code class="descname">topics_and_transformations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.str_indx.topics_and_transformations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-modules.my_multiset.tst_multiset">
+<span id="modules-my-multiset-tst-multiset-module"></span><h2>modules.my_multiset.tst_multiset module<a class="headerlink" href="#module-modules.my_multiset.tst_multiset" title="Permalink to this headline">¶</a></h2>
+<p># Module for testing MyMultiset ADT</p>
+<dl class="function">
+<dt id="modules.my_multiset.tst_multiset.test_multiset">
+<code class="descclassname">modules.my_multiset.tst_multiset.</code><code class="descname">test_multiset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.my_multiset.tst_multiset.test_multiset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-modules.my_multiset">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-modules.my_multiset" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">modules.my_multiset package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-modules.my_multiset.arrays">modules.my_multiset.arrays module</a></li>
+<li><a class="reference internal" href="#module-modules.my_multiset.my_corpus">modules.my_multiset.my_corpus module</a></li>
+<li><a class="reference internal" href="#module-modules.my_multiset.my_multiset">modules.my_multiset.my_multiset module</a></li>
+<li><a class="reference internal" href="#module-modules.my_multiset.question">modules.my_multiset.question module</a></li>
+<li><a class="reference internal" href="#module-modules.my_multiset.str_indx">modules.my_multiset.str_indx module</a></li>
+<li><a class="reference internal" href="#module-modules.my_multiset.tst_multiset">modules.my_multiset.tst_multiset module</a></li>
+<li><a class="reference internal" href="#module-modules.my_multiset">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="modules.message_processing.html" title="previous chapter">modules.message_processing package</a></li>
+      <li>Next: <a href="modules.questions_dict.html" title="next chapter">modules.questions_dict package</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/modules.my_multiset.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Ivan Kosarevych.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/modules.my_multiset.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

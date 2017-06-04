@@ -1,0 +1,340 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>modules.message_processing package &#8212; Answerme Bot 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="modules.my_multiset package" href="modules.my_multiset.html" />
+    <link rel="prev" title="Documentation for run.py" href="run.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="modules-message-processing-package">
+<h1>modules.message_processing package<a class="headerlink" href="#modules-message-processing-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-modules.message_processing.get_messages">
+<span id="modules-message-processing-get-messages-module"></span><h2>modules.message_processing.get_messages module<a class="headerlink" href="#module-modules.message_processing.get_messages" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="modules.message_processing.get_messages.get_channels_id">
+<code class="descclassname">modules.message_processing.get_messages.</code><code class="descname">get_channels_id</code><span class="sig-paren">(</span><em>channel_name</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.get_messages.get_channels_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Slack channel id by its name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>channel_name</strong> – str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="modules.message_processing.get_messages.get_messages">
+<code class="descclassname">modules.message_processing.get_messages.</code><code class="descname">get_messages</code><span class="sig-paren">(</span><em>channel_id</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.get_messages.get_messages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get messages of given Slack channel</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>channel_id</strong> – Slack channel ID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list(dict)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="modules.message_processing.get_messages.test">
+<code class="descclassname">modules.message_processing.get_messages.</code><code class="descname">test</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.get_messages.test" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="modules.message_processing.get_messages.write_to_file">
+<code class="descclassname">modules.message_processing.get_messages.</code><code class="descname">write_to_file</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.get_messages.write_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write read messages to text file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> – list</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-modules.message_processing.get_questions">
+<span id="modules-message-processing-get-questions-module"></span><h2>modules.message_processing.get_questions module<a class="headerlink" href="#module-modules.message_processing.get_questions" title="Permalink to this headline">¶</a></h2>
+<p># Module for processing messages which were got from Slack channel history
+# Find questions in this messages
+# Make question-answer pairs</p>
+<dl class="function">
+<dt id="modules.message_processing.get_questions.check_for_addressee">
+<code class="descclassname">modules.message_processing.get_questions.</code><code class="descname">check_for_addressee</code><span class="sig-paren">(</span><em>message_text</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.get_questions.check_for_addressee" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether message has id of user to whom this message is written</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message_text</strong> – str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="modules.message_processing.get_questions.get_addressee">
+<code class="descclassname">modules.message_processing.get_questions.</code><code class="descname">get_addressee</code><span class="sig-paren">(</span><em>message_text</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.get_questions.get_addressee" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract addressee from string between triangle braces(the same string without ‘&#64;’ or ‘!’)
+:param message_text: str
+:return: str</p>
+<dl class="docutils">
+<dt>Example: input: “&#64;userid”</dt>
+<dd>output: userid</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="modules.message_processing.get_questions.get_addressee_to_remove">
+<code class="descclassname">modules.message_processing.get_questions.</code><code class="descname">get_addressee_to_remove</code><span class="sig-paren">(</span><em>message_text</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.get_questions.get_addressee_to_remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get id to whom message is written(string which is between triangle braces)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="modules.message_processing.get_questions.get_questions">
+<code class="descclassname">modules.message_processing.get_questions.</code><code class="descname">get_questions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.get_questions.get_questions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make list of question-answer pairs</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list(tuple)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="modules.message_processing.get_questions.remove_addressee">
+<code class="descclassname">modules.message_processing.get_questions.</code><code class="descname">remove_addressee</code><span class="sig-paren">(</span><em>message_text</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.get_questions.remove_addressee" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message_text</strong> – str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">message without addressee and punctuation marks</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-modules.message_processing.main">
+<span id="modules-message-processing-main-module"></span><h2>modules.message_processing.main module<a class="headerlink" href="#module-modules.message_processing.main" title="Permalink to this headline">¶</a></h2>
+<p># Module for processing received message
+# Create multiset object</p>
+<dl class="function">
+<dt id="modules.message_processing.main.create_multiset">
+<code class="descclassname">modules.message_processing.main.</code><code class="descname">create_multiset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.main.create_multiset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new MyMultiset object for storing questions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">MyMultiset object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="modules.message_processing.main.is_answer">
+<code class="descclassname">modules.message_processing.main.</code><code class="descname">is_answer</code><span class="sig-paren">(</span><em>multiset</em>, <em>non_answ_dict</em>, <em>message</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.main.is_answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detect whether message is an answer to one of given questions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>multiset</strong> – questions base</li>
+<li><strong>non_answ_dict</strong> – Questions_dict object created after launch</li>
+<li><strong>message</strong> – str</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="modules.message_processing.main.is_question">
+<code class="descclassname">modules.message_processing.main.</code><code class="descname">is_question</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.main.is_question" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detect whether message is a question</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> – str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="modules.message_processing.main.main">
+<code class="descclassname">modules.message_processing.main.</code><code class="descname">main</code><span class="sig-paren">(</span><em>message</em>, <em>multiset</em>, <em>non_answ_dict</em>, <em>user</em><span class="sig-paren">)</span><a class="headerlink" href="#modules.message_processing.main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make all operations with read message:
+- detect whether it’s question
+- if so create corpus, make linguistic model,</p>
+<blockquote>
+<div>find most similar to given question</div></blockquote>
+<ul class="simple">
+<li>detect whether the message is an answer to unanswered question</li>
+<li>if so add it to questions base</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>message</strong> – str, latest message from Slack channel</li>
+<li><strong>multiset</strong> – created multiset of questions, MyMultiset object</li>
+<li><strong>non_answ_dict</strong> – created Questions_dict object for storing questions without answers</li>
+<li><strong>user</strong> – id of user who asked question</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">int/str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-modules.message_processing">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-modules.message_processing" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">modules.message_processing package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-modules.message_processing.get_messages">modules.message_processing.get_messages module</a></li>
+<li><a class="reference internal" href="#module-modules.message_processing.get_questions">modules.message_processing.get_questions module</a></li>
+<li><a class="reference internal" href="#module-modules.message_processing.main">modules.message_processing.main module</a></li>
+<li><a class="reference internal" href="#module-modules.message_processing">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="run.html" title="previous chapter">Documentation for run.py</a></li>
+      <li>Next: <a href="modules.my_multiset.html" title="next chapter">modules.my_multiset package</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/modules.message_processing.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Ivan Kosarevych.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/modules.message_processing.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

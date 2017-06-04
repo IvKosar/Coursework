@@ -8,7 +8,6 @@
 """
 
 import time
-from modules.message_processing.get_messages import func
 
 from slackclient import SlackClient
 
@@ -24,8 +23,8 @@ TEACH1_ID = "U57B29A86" #U22JEU06N
 TEACH2_ID = "U57B29A86" #U2B5102ES
 
 # initialize questions_base
-QUESTIONS_BASE = message_process.create_multiset()
-NON_ANSWERED_QUESTIONS = Questions_dict()
+#QUESTIONS_BASE = message_process.create_multiset()
+#NON_ANSWERED_QUESTIONS = Questions_dict()
 
 # initialize slack client
 slack_client = SlackClient("xoxb-176818620355-m7nN8xxFha856gQU1Lk5Pzdu".replace("Q","q"))

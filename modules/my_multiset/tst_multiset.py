@@ -3,7 +3,6 @@
 """
 
 from pprint import pprint
-from arrays import DynamicArray
 from modules.my_multiset.my_multiset import MyMultiset
 from modules.message_processing.main import create_multiset
 

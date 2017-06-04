@@ -5,11 +5,6 @@ from gensim import corpora,models,similarities
 #logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
 def from_str_to_vec():
-    '''documents = [
-        "It is not so important for this problem but turn 1pk",
-        "This thing is not very important for the problem mentioned but return 1pk",
-        "This case is not important for the given problem, but turn 1pk"
-    ]'''
     documents = [
         "один два пять шість",
         "вав уау цс",

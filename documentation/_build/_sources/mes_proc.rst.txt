@@ -1,0 +1,6 @@
+Documentation for message processing package
+============================================
+.. automodule:: ../modules.message_processing.main
+   :members:
+.. automodule:: ../modules.message_processing.get_messages
+   :members:
