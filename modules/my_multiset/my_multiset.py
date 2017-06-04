@@ -1,3 +1,7 @@
+"""
+# Contain MyMultiset ADT
+"""
+
 from gensim import corpora, models, similarities
 
 from modules.my_multiset.arrays import DynamicArray
@@ -16,7 +20,7 @@ class MyMultiset():
 
     def __getitem__(self, item):
         """
-        Returns answer to question on given position in keys
+        Return answer to question on given position in keys
         
         :param item: position in self.keys
         :return: answer to the question
@@ -31,12 +35,11 @@ class MyMultiset():
 
     def add_key(self, question,value=None):
         """
-        Adds key(class Question object to self.keys)
-        
-        :param quest_vec: question characteristic
+        Add key(class Question object to self.keys)
+
         :param question: question to add
-        :param value: 
-        :return: 
+        :param value: answer to the question
+        :return: None
         """
         if not isinstance(question, str):
             self.keys.append(question)
@@ -53,15 +56,15 @@ class MyMultiset():
         :param question: str
         :param value: str
         :param quest_vec: str 
-        :return: 
+        :return: class Question object
         """
         return Question(question, value, user)
 
     def get_questions(self):
         """
-        Get list of questions as list of strings
+        Get list of questions
 
-        :return:
+        :return: list(str)
         """
         keys = list(self.get_values())
         questions = list(map(lambda x: x.get_question(), keys))
@@ -69,9 +72,9 @@ class MyMultiset():
 
     def get_values(self):
         """
-        Return generator of keys
+        Return generator of answers to the questions
                 
-        :return: generator object of keys
+        :return: generator object of values of keys
         """
         for index in range(len(self.keys)):
             yield self.keys[index]
@@ -82,7 +85,7 @@ class MyMultiset():
         Read lines from file
         
         :param filename: str, name of file to read from
-        :return: 
+        :return: list
         """
         with open(filename, "r") as file:
             return file.readlines()
@@ -91,8 +94,9 @@ class MyMultiset():
     def write_to_file(texts):
         """
         Write texts(e.g. processed questions) to file
+
         :param texts: list(list)
-        :return: 
+        :return: None
         """
         with open(MyMultiset.PATH + "texts", 'w') as file:
             for text in texts:
@@ -100,9 +104,10 @@ class MyMultiset():
 
     def make_corpus(self):
         """
-        Makes corpus of questions
+        Make corpus of questions
+        Save corpus to file
         
-        :return: corpus represented in list
+        :return: None
         """
         from modules.my_multiset.my_corpus import MyCorpus
 
@@ -125,15 +130,17 @@ class MyMultiset():
 
     @staticmethod
     def load_corpus():
+        # Read corpus from file
         return corpora.MmCorpus(MyMultiset.PATH + "corpus.mm")
 
     def make_model(self, corpus, model):
         """
         Make vectors of given corpus represented in model to compare them
+        Save the model to file
         
         :param corpus: corpus of questions, list(list)
-        :param model: tf-idf or lsi(lsa)
-        :return: 
+        :param model: tf-idf or lsi
+        :return: None
         """
         dictionary = corpora.Dictionary.load(MyMultiset.PATH + "gensim_dictionary.dict")
         tfidf = models.TfidfModel(corpus)
@@ -155,11 +162,13 @@ class MyMultiset():
 
     def find_similarities(self, corpus, model, question, user):
         """
-        Find percentage of similarity of each question with given one
-        
+        Find percentage of similarity of each question in model with given one
+
+        :param corpus: list(list)
         :param model: list(list)
         :param question: str
-        :return: 
+        :param user: Slack user id
+        :return: list(list), inner list is a sequence number of question with percentage similarity to given one
         """
         # read corpora dictionary from file
         dictionary = corpora.Dictionary.load(MyMultiset.PATH + "gensim_dictionary.dict")
@@ -179,20 +188,12 @@ class MyMultiset():
         sims = index[vec_lsi]
         return sims, question_obj
 
-    def sort(self, reverse = False):
-        """
-        Sort list of similarities
-        
-        :return: 
-        """
-        pass
-
-    def find_most_similar(self, similarities, question):
+    def find_most_similar(self, similarities):
         """
         Find most similar question
         
-        :param similarities: 
-        :return: 
+        :param similarities: list(list) created in find_similarities method
+        :return: str/int
         """
         sims = sorted(enumerate(similarities), reverse=True, key=lambda x: x[1])
         highest_similarity = sims[0][1]

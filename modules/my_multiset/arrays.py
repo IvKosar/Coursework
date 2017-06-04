@@ -1,3 +1,6 @@
+"""
+Contain classes for representing data structures Array and Dynamic array
+"""
 import ctypes
 
 

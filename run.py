@@ -8,6 +8,7 @@
 """
 
 import time
+from modules.message_processing.get_messages import func
 
 from slackclient import SlackClient
 

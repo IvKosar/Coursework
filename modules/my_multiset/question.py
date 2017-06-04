@@ -1,24 +1,31 @@
 """
-
+# Contain class Question for storing question and its answer
 """
 
 class Question():
     """
     Represents question
+    Attributes: question(required)
+                value(not required)
+                user(not required)
     """
     def __init__(self, question, value=None, user=None):
         """
-        
-        :param que_vec: list, characteristic of question
-         example: [(1,1),(3,2)]
         :param question: str
         :param value: str, answer to the question
+        :param user: Slack user ID
         """
         self._question = question.lower() #translate_whole(question).lower()
         self._value = value
         self._user = user
 
     def set_value(self, value):
+        """
+        Set self.value to given value
+
+        :param value: str, answer to the question
+        :return: None
+        """
         self._value = value
 
     def set_user_to_None(self):
@@ -26,15 +33,15 @@ class Question():
 
     def get_user(self):
         """
-        Return question vector
+        Return Slack user id
         
-        :return: list
+        :return: str
         """
         return self._user
 
     def get_question(self):
         """
-        Return question as str
+        Return question
         
         :return: str
         """

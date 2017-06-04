@@ -29,13 +29,13 @@ def main(message, multiset, non_answ_dict, user):
         multiset.make_corpus()
         corpus = MyMultiset.load_corpus()
 
-        # in next versions best model detection will be added
+        # in next versions detection of most appropriate model will be added
         # now it's lsi model by default, which is the most universal
         multiset.make_model(corpus, "lsi")
         model = MyMultiset.load_model("lsi")
 
         similarities, question_object = multiset.find_similarities(corpus, model, message, user)
-        print(similarities)
+
         # answer to the question most similar to given
         most_similiar = multiset.find_most_similar(similarities, question_object)
         if most_similiar:
@@ -51,6 +51,7 @@ def main(message, multiset, non_answ_dict, user):
 def create_multiset():
     """
     Create new MyMultiset object for storing questions
+
     :return: MyMultiset object
     """
     my_multiset = MyMultiset()
@@ -64,18 +65,19 @@ def is_question(message):
     """
     Detect whether message is a question
 
-    :param message:
-    :return:
+    :param message: str
+    :return: bool
     """
     return "?" in message
 
 def is_answer(multiset,non_answ_dict, message):
     """
-    Detect whether message is an answer to one given questions
+    Detect whether message is an answer to one of given questions
 
     :param multiset: questions base
+    :param non_answ_dict: Questions_dict object created after launch
     :param message: str
-    :return:
+    :return: bool
     """
     if check_for_addressee(message) is True and non_answ_dict.is_non_answered() is True:
         message_addressee = get_addressee(message)

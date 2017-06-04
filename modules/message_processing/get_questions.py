@@ -1,17 +1,25 @@
+"""
+# Module for processing messages which were got from Slack channel history
+# Find questions in this messages
+# Make question-answer pairs
+"""
 import os
 from modules.my_multiset.question import Question
 
 
 def get_questions():
     """
-    get list of questions
+    Make list of question-answer pairs
     
-    :return: 
+    :return: list(tuple)
     """
+    # read answers
     questions = []
-    with open("/home/ivan/Документи/Slackbot/docs/answers_base", "r") as file:
+    with open(os.getcwd() + "/docs/answers_base", "r") as file:
         values = list(map(lambda x: x.strip(), file.readlines()))
 
+    # find questions
+    # make pairs
     i = 0
     with open("/home/ivan/Документи/Slackbot" + "/docs/messages", 'r') as file:
         for line in file:
@@ -28,15 +36,15 @@ def check_for_addressee(message_text):
     """
     Check whether message has id of user to whom this message is written
 
-    :param message_text:
-    :return:
+    :param message_text: str
+    :return: bool
     """
     return ("<@" in message_text or "<!" in message_text) and ">" in message_text
 
 
 def get_addressee_to_remove(message_text):
     """
-    Get id to whom message is written
+    Get id to whom message is written(string which is between triangle braces)
     
     :return: 
     """
@@ -49,14 +57,21 @@ def get_addressee_to_remove(message_text):
 
 def get_addressee(message_text):
     """
-    Extract addressator from
-    :param message_text:
-    :return:
+    Extract addressee from string between triangle braces(the same string without '@' or '!')
+    :param message_text: str
+    :return: str
+
+    Example: input: "@userid"
+             output: userid
     """
     return get_addressee_to_remove(message_text)[1:]
 
 
 def remove_addressee(message_text):
+    """
+    :param message_text: str
+    :return: message without addressee and punctuation marks
+    """
     import string
     while "<" in message_text and ">" in message_text:
         addressator = get_addressee_to_remove(message_text)
@@ -65,7 +80,7 @@ def remove_addressee(message_text):
 
     # remove punctuation marks
     punctuation = string.punctuation.replace("<", "").replace(">", "")
-    for c in string.punctuation:
+    for c in punctuation:
         message_text = message_text.replace(c, "")
 
     return message_text.strip()
@@ -73,5 +88,5 @@ def remove_addressee(message_text):
 
 if __name__ == "__main__":
     from pprint import pprint
-    #print(remove_addresing("<@dfdfd>  dfd"))
+    print(remove_addresing("<@dfdfd>  dfd"))
     pprint(get_questions())

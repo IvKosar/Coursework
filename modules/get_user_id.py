@@ -1,3 +1,7 @@
+"""
+Module for getting SLack user ID using SlackClient wrapper for SLack API
+"""
+
 import os
 from slackclient import SlackClient
 
@@ -5,13 +9,13 @@ BOT_NAME = 'answerme'
 
 #slack_client = SlackClient(os.environ.get("SLACK_BOT_TOKEN"))
 tokens = ["xoxb-176818620355-m7nN8xxFha856gQU1Lk5PzduZ".replace("Q","q"),
-          "xoxp-70140307553-78037962064-188319471891-172b09fd86060496fe4f98173058a3be"]
+          'xoxp-70140307553-78037962064-192429703618-c939446dfcc16c0f7b7d3edA96544f5f'.replace("A","a")]
 slack_client = SlackClient(tokens[0])
 
 
 def get_user_id(username):
     """
-    Get user id by Slack username
+    Get Slack user(bot) id by his username
     
     :param username: Slack username
     :return: 

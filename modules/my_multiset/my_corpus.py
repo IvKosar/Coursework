@@ -1,6 +1,12 @@
+"""
+# Contain class for converting strings to vectors
+# Each string is converted into vector, which represent frequency of
+# each word in string
+"""
+
 class MyCorpus():
     """
-    Memory_friendly representation of corpus as simple generator
+    Memory friendly representation of corpus as simple generator
     """
     def __init__(self,dictionary, texts):
         """
@@ -13,6 +19,12 @@ class MyCorpus():
 
 
     def __iter__(self):
+        """
+        iterate over read strings
+        covert them to vectors
+
+        :return: generator
+        """
         file = open(self.texts)
         for line in file:
             if line:

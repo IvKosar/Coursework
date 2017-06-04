@@ -1,19 +1,17 @@
+"""
+# Module for testing MyMultiset ADT
+"""
+
 from pprint import pprint
 from arrays import DynamicArray
 from modules.my_multiset.my_multiset import MyMultiset
 from modules.message_processing.main import create_multiset
 
 
-def test():
-    lst = DynamicArray()
-    lst.append(1)
-    print(lst[0])
-
 def test_multiset():
     # initialize MyMultiset
     dictionary = create_multiset()
 
-    '''
     # add keys
     dictionary.add_key("Один два три шість","sasa")
     dictionary.add_key("чотири п'ять шість десять",'fff')
@@ -21,7 +19,7 @@ def test_multiset():
 
     # test get keys
     keys = list(dictionary.get_keys())
-'''
+
     # test get_questions
     questions = dictionary.get_questions()
     print(questions)
