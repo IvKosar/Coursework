@@ -1,14 +1,14 @@
-# Coursework project of bot "Answerme" for Slack
-#This bot is created to immediately give answer to question if it's in bot's base
+# Coursework project of bot "Answerme" for Slack#
+###This bot is created to immediately give answer to question if it's in bot's base###
 
-#**Bot functionality:**
-    - receiving messages from Slack channel
-    - posting messages to Slack channel
-    - detecting message type(question, answer or plain message)
-    - searching for most similar question to received one
-    - updating questions-answers base with new questions
+##Bot functionality:##
+    * receiving messages from Slack channel
+    * posting messages to Slack channel
+    * detecting message type(question, answer or plain message)
+    * searching for most similar question to received one
+    * updating questions-answers base with new questions
     
- #**Installation and use**
+ ##Installation and use##
  
  ```
  git clone https://github.com/IvKosar/Coursework.git`
