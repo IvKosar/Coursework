@@ -2,6 +2,7 @@
 # Contain MyMultiset ADT
 """
 
+import os
 from gensim import corpora, models, similarities
 
 from modules.my_multiset.arrays import DynamicArray
@@ -122,7 +123,7 @@ class MyMultiset():
 
         questions = self.get_questions()
         # remove common words and tokenize
-        stoplist = set(MyMultiset.read_from_file("/home/ivan/Документи/Slackbot/docs/ukrainian-stopwords.txt"))
+        stoplist = set(MyMultiset.read_from_file(os.getcwd() + "/docs/ukrainian-stopwords.txt"))
         texts = [[word for word in question.lower().split() if word not in stoplist]
                  for question in questions]
         MyMultiset.write_to_file(texts)
@@ -133,7 +134,7 @@ class MyMultiset():
         dictionary.save(MyMultiset.PATH + "gensim_dictionary.dict")
 
         # create corpus
-        corpus = list(MyCorpus(dictionary, MyMultiset.PATH + "texts"))
+        corpus = list(MyCorpus(dictionary, MyMultiset.PATH + "texts.txt"))
         corpora.MmCorpus.serialize(MyMultiset.PATH + 'corpus.mm', corpus)
         return
 

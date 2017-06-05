@@ -35,7 +35,6 @@ def main(message, multiset, non_answ_dict, user):
         model = MyMultiset.load_model("lsi")
 
         similarities, question_object = multiset.find_similarities(corpus, model, message, user)
-        print(question_object.get_user())
 
         # answer to the question most similar to given
         most_similiar = multiset.find_most_similar(similarities)
@@ -43,7 +42,6 @@ def main(message, multiset, non_answ_dict, user):
             return (most_similiar, 0)
         else:
             non_answ_dict.add_question(question_object)
-            print(non_answ_dict.is_non_answered())
             return (message, 1)
     elif is_answer(multiset, non_answ_dict, message):
         return 1
