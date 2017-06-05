@@ -15,13 +15,13 @@ def get_questions():
     """
     # read answers
     questions = []
-    with open(os.getcwd() + "/docs/answers_base", "r") as file:
+    with open(os.getcwd() + "/docs/answers_base.txt", "r") as file:
         values = list(map(lambda x: x.strip(), file.readlines()))
 
     # find questions
     # make pairs
     i = 0
-    with open("/home/ivan/Документи/Slackbot" + "/docs/messages", 'r') as file:
+    with open(os.getcwd() + "/docs/messages.txt", 'r') as file:
         for line in file:
             message = eval(line)
             if "?" in message['text']:

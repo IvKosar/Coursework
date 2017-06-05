@@ -60,24 +60,33 @@ class MyMultiset():
         """
         return Question(question, value, user)
 
+    def get_keys(self):
+        """
+        Return generator of keys in self.keys
+
+        :return: generator object of values of keys
+        """
+        for index in range(len(self.keys)):
+            yield self.keys[index]
+
     def get_questions(self):
         """
         Get list of questions
 
         :return: list(str)
         """
-        keys = list(self.get_values())
+        keys = list(self.get_keys())
         questions = list(map(lambda x: x.get_question(), keys))
         return questions
 
     def get_values(self):
         """
-        Return generator of answers to the questions
-                
-        :return: generator object of values of keys
+
+        :return:
         """
-        for index in range(len(self.keys)):
-            yield self.keys[index]
+        keys = list(self.get_keys())
+        answers = list(map(lambda x: x.get_value(), keys))
+        return answers
 
     @staticmethod
     def read_from_file(filename):
@@ -150,7 +159,7 @@ class MyMultiset():
 
         if model is "lsi":
             # create lsi model
-            lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=6)
+            lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=5)
             lsi.save(MyMultiset.PATH + "model.lsi")
         else:
             tfidf.save(MyMultiset.PATH + "model.tfidf")

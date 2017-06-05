@@ -71,11 +71,11 @@ def handle_message(message, channel, user):
     # post thankful message to teacher
     # if it responses with 0, means the message was neither a question nor an answer
     answer = message_process.main(message, QUESTIONS_BASE, NON_ANSWERED_QUESTIONS, user)
-    if answer and answer is not 1 and answer not in message:
-        response = "<@" + user + ">" + " " + answer + '\n' + \
+    if isinstance(answer, tuple) and answer[1] == 0:
+        response = "<@" + user + ">" + " " + answer[0] + '\n' + \
                     "Якщо відповідь була корисною відреагуйте пальцем вверх =)"
-    elif not isinstance(answer, int) and answer in message:
-        response = "<@" + TEACH1_ID + ">" + "<@" + TEACH2_ID + ">" + " " + message + \
+    elif isinstance(answer, tuple) and answer[1] == 1:
+        response = "<@" + TEACH1_ID + ">" + "<@" + TEACH2_ID + ">" + " " + answer[0] + "?" + \
             "\n" + "Please answer to " + "<@" + user + ">" +\
             " using this this tag"
     elif answer is 1:
@@ -100,7 +100,8 @@ if __name__ == "__main__":
 
                 #question = NON_ANSWERED_QUESTIONS.get_quest_to_answer('U57B29A86')
                 #if question: print(question.get_question())
-                #print(len(list(QUESTIONS_BASE.get_keys())))
+                print("quests=", len(list(QUESTIONS_BASE.get_questions())))
+                print("answs=", len(list(QUESTIONS_BASE.get_values())))
 
                 handle_message(message,channel, user)
             time.sleep(READ_WEB_SOCKET_DELAY)
