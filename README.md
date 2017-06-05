@@ -1,4 +1,4 @@
-# Coursework project of bot "Answerme" for Slack#
+Markup: # Coursework project of bot "Answerme" for Slack#
 ###This bot is created to immediately give answer to question if it's in bot's base###
 
 ##Bot functionality:##
