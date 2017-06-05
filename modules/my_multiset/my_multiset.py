@@ -98,7 +98,7 @@ class MyMultiset():
         :return: list
         """
         with open(filename, "r") as file:
-            return file.readlines()
+            return map(lambda x: x.strip(), file.readlines())
 
     @staticmethod
     def write_to_file(texts):
@@ -124,6 +124,7 @@ class MyMultiset():
         questions = self.get_questions()
         # remove common words and tokenize
         stoplist = set(MyMultiset.read_from_file(os.getcwd() + "/docs/ukrainian-stopwords.txt"))
+
         texts = [[word for word in question.lower().split() if word not in stoplist]
                  for question in questions]
         MyMultiset.write_to_file(texts)
@@ -160,7 +161,7 @@ class MyMultiset():
 
         if model is "lsi":
             # create lsi model
-            lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=5)
+            lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=6)
             lsi.save(MyMultiset.PATH + "model.lsi")
         else:
             tfidf.save(MyMultiset.PATH + "model.tfidf")
@@ -186,8 +187,12 @@ class MyMultiset():
         # create question object
         question_obj = self.create_Question_obj(question, user=user)
 
+        # remove stopwords
+        stoplist = set(MyMultiset.read_from_file(os.getcwd() + "/docs/ukrainian-stopwords.txt"))
+        question = list(filter(lambda x: x not in stoplist, question.split()))
+
         # convert question to vector
-        vec_bow = dictionary.doc2bow(question.split())
+        vec_bow = dictionary.doc2bow(question)
 
         # convert question to LSI space
         vec_lsi = model[vec_bow]
