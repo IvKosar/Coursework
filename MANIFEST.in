@@ -1,0 +1,5 @@
+include *.txt
+global-include  *.txt *.py
+global-exclude *.pdf *.odt
+graft modules/my_multiset/tmp
+graft documentation

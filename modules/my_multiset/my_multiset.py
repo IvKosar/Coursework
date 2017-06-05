@@ -107,7 +107,7 @@ class MyMultiset():
         :param texts: list(list)
         :return: None
         """
-        with open(MyMultiset.PATH + "texts", 'w') as file:
+        with open(MyMultiset.PATH + "texts.txt", 'w') as file:
             for text in texts:
                 file.write(" ".join(text) + "\n")
 
