@@ -71,7 +71,6 @@ def handle_message(message, channel, user):
     # post thankful message to teacher
     # if it responses with 0, means the message was neither a question nor an answer
     answer = message_process.main(message, QUESTIONS_BASE, NON_ANSWERED_QUESTIONS, user)
-    print(answer)
     if isinstance(answer, tuple) and answer[1] == 0:
         response = "<@" + user + ">" + " " + answer[0] + '\n' + \
                     "Якщо відповідь була корисною відреагуйте пальцем вверх =)"
